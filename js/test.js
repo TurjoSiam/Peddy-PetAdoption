@@ -1,1 +1,0 @@
-${item.breed == null || item.breed == undefined? 'Not available' : ${item.breed}}
