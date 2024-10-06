@@ -67,10 +67,19 @@ const displayPets = (pets) => {
                 </div>
                 <div class="flex flex-col items-start">
                     <h2 class="text-xl font-extrabold">${item.pet_name}</h2>
-                    <p class="text-gray-500 flex items-center gap-3"><span><i class="fa-solid fa-table-cells-large"></i></span><span>Breed: ${item.breed}</span></p>
-                    <p class="text-gray-500 flex items-center gap-3"><span><i class="fa-regular fa-calendar-days"></i></span><span>Birth: ${item.date_of_birth}</span></p>
-                    <p class="text-gray-500 flex items-center gap-3"><span><i class="fa-solid fa-transgender"></i></span><span>Gender: ${item.gender}</span></p>
-                    <p class="text-gray-500 flex items-center gap-4"><span><i class="fa-solid fa-dollar-sign"></i></span><span>Price: ${item.price}</span></p>
+
+                    ${item.breed == undefined? `<p class="text-gray-500 flex items-center gap-3"><span><i class="fa-solid fa-table-cells-large"></i></span><span>Breed: Not available</span></p>` : `
+                    <p class="text-gray-500 flex items-center gap-3"><span><i class="fa-solid fa-table-cells-large"></i></span><span>Breed: ${item.breed}</span></p>`
+                    }
+                    
+                    ${item.date_of_birth == undefined? `<p class="text-gray-500 flex items-center gap-3"><span><i class="fa-regular fa-calendar-days"></i></span><span>Birth: Not available</span></p>` : `<p class="text-gray-500 flex items-center gap-3"><span><i class="fa-regular fa-calendar-days"></i></span><span>Birth: ${item.date_of_birth}</span></p>`
+                    }
+
+                    ${item.gender == undefined? `<p class="text-gray-500 flex items-center gap-3"><span><i class="fa-solid fa-transgender"></i></span><span>Gender: Not available</span></p>` : `<p class="text-gray-500 flex items-center gap-3"><span><i class="fa-solid fa-transgender"></i></span><span>Gender: ${item.gender}</span></p>`
+                    }
+
+                    ${item.price == undefined? `<p class="text-gray-500 flex items-center gap-4"><span><i class="fa-solid fa-dollar-sign"></i></span><span>Price: Not available</span></p>` : `<p class="text-gray-500 flex items-center gap-4"><span><i class="fa-solid fa-dollar-sign"></i></span><span>Price: ${item.price}</span></p>`
+                    }
                 </div>
                 <div class="flex justify-between items-center w-full">
                     <div class="rounded-md border py-1 px-3 text-gray-500"><i class="fa-regular fa-thumbs-up"></i></i></div>
