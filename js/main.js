@@ -55,6 +55,24 @@ const loadPetDetails = async (petId) => {
     displayDetails(data.petData)
 }
 
+// liked pet function
+const likedPet = (picture) => {
+    const likedPetContainer = document.getElementById('liked-pet-container');
+    const div = document.createElement('div')
+    div.innerHTML = `
+        <img src="${picture}" class="rounded-md" alt="liked pet">
+    `
+    likedPetContainer.append(div);
+}
+
+
+
+
+
+
+
+
+
 const displayDetails = (details) => {
     console.log(details);
     const detailsContainer = document.getElementById('modal-container');
@@ -91,13 +109,8 @@ const displayDetails = (details) => {
         </div>
     </div>
     `
-
     document.getElementById('modal').showModal()
 }
-
-
-
-
 
 
 // display category function
@@ -161,7 +174,7 @@ const displayPets = (pets) => {
                     }
                 </div>
                 <div class="flex justify-between items-center w-full">
-                    <div class="rounded-md border py-1 px-3 text-gray-500"><i class="fa-regular fa-thumbs-up"></i></i></div>
+                    <button onclick="likedPet('${item.image}')"><div class="rounded-md border py-1 px-3 text-gray-500"><i class="fa-regular fa-thumbs-up"></i></i></div></button>
                     <div class="rounded-md border py-1 px-3 text-cyan-700 font-bold">Adopt</div>
                     <button onclick="loadPetDetails(${item.petId})"><div class="rounded-md border py-1 px-3 text-cyan-700 font-bold">Details</div></button>
                 </div>
