@@ -13,9 +13,18 @@ const loadCategories = () => {
 // load all pets function
 const loadPets = () => {
     try {
+        const petContainer = document.getElementById('pets-container');
+        petContainer.innerHTML = "";
+        document.getElementById('spinner').style.display = "block";
+
         fetch('https://openapi.programming-hero.com/api/peddy/pets')
             .then(res => res.json())
-            .then(data => displayPets(data.pets));
+            .then(data => {
+
+                setTimeout(function(){
+                    displayPets(data.pets);
+                }, 2000)
+            });
     } 
     catch (error) {
         console.log(error);
@@ -25,13 +34,20 @@ const loadPets = () => {
 // load pet category wise function
 const loadCategoryPets =(categoryName) =>{
     try {
+        const petContainer = document.getElementById('pets-container');
+        petContainer.innerHTML = "";
+        document.getElementById('spinner').style.display = "block";
+
         fetch(`https://openapi.programming-hero.com/api/peddy/category/${categoryName}`)
             .then(res => res.json())
             .then(data => {
                 removeActiveBtn();
                 const activeBtn = document.getElementById(`btn-${categoryName}`);
                 activeBtn.classList.add('active-btn')
-                displayPets(data.data);
+                
+                setTimeout(function() {
+                    displayPets(data.data);
+                }, 2000)
             });
     } 
     catch (error) {
@@ -133,7 +149,7 @@ const displayCategories = (categories) => {
 // display all pets function
 const displayPets = (pets) => {
     const petContainer = document.getElementById('pets-container');
-    petContainer.innerHTML = ""
+    document.getElementById('spinner').style.display = "none";
 
     if(pets.length == 0){
         petContainer.classList.remove('grid');
