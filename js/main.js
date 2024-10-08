@@ -154,7 +154,7 @@ const displayPets = (pets) => {
     if(pets.length == 0){
         petContainer.classList.remove('grid');
         petContainer.innerHTML = `
-            <div class="w-full px-28 py-24 flex flex-col items-center gap-5">
+            <div class="w-full px-0 lg:px-28 py-0 lg:py-24 flex flex-col items-center gap-5">
                 <img src="./images/error.webp" alt="no content here">
                 <h1 class="text-4xl font-extrabold text-center">No Information Available</h1>
                 <p class="text-gray-500 text-center">Pet adoption is the process of transferring responsibility for a pet that was previously owned by another party sources for adoptable pets.</p>
