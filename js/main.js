@@ -74,7 +74,6 @@ const likedPet = (picture) => {
 
 
 const displayDetails = (details) => {
-    console.log(details);
     const detailsContainer = document.getElementById('modal-container');
 
     detailsContainer.innerHTML = `
@@ -175,7 +174,7 @@ const displayPets = (pets) => {
                 </div>
                 <div class="flex justify-between items-center w-full">
                     <button onclick="likedPet('${item.image}')"><div class="rounded-md border py-1 px-3 text-gray-500"><i class="fa-regular fa-thumbs-up"></i></i></div></button>
-                    <div class="rounded-md border py-1 px-3 text-cyan-700 font-bold">Adopt</div>
+                    <button onclick="adoptedPet(${item.petId})" id="adopt-btn-${item.petId}"><div class="rounded-md border py-1 px-3 text-cyan-700 font-bold">Adopt</div></button>
                     <button onclick="loadPetDetails(${item.petId})"><div class="rounded-md border py-1 px-3 text-cyan-700 font-bold">Details</div></button>
                 </div>
         `
@@ -183,6 +182,30 @@ const displayPets = (pets) => {
     })
 }
 
+// adopted pet function
+const adoptedPet = (id) => {
+    
+    const adoptBtn = document.getElementById(`adopt-btn-${id}`)
+    adoptBtn.setAttribute('disabled', true);
+    adoptBtn.innerHTML = `<div class="rounded-md border py-1 px-3 text-cyan-700 font-bold bg-gray-300">Adopted</div>`
+
+    const myModal = document.getElementById('my_modal_5');
+    myModal.showModal();
+
+    let counter = 3;
+    const counterContainer = document.getElementById('counter-container');
+    counterContainer.innerHTML = counter;
+
+    const counterTimer = setInterval(() => {
+        counter--;
+        counterContainer.innerHTML = counter;
+
+        if(counter === 0){
+            clearInterval(counterTimer);
+            myModal.close();
+        }
+    }, 1000);
+}
 
 
 loadCategories()
