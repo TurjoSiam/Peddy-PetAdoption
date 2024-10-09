@@ -14,5 +14,8 @@ Peddy is a popular platform among pet owners. It gives you a wide range of possi
 - let and const
 - arrow function
 - template literals
+- spread operators (...)
+- for...of loop
 
 ## *Live link:*
+https://turjosiam-assignment6.netlify.app/
