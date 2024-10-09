@@ -11,6 +11,8 @@ const loadCategories = () => {
 };
 
 // load all pets function
+let petsData = [];
+
 const loadPets = () => {
     try {
         const petContainer = document.getElementById('pets-container');
@@ -20,9 +22,10 @@ const loadPets = () => {
         fetch('https://openapi.programming-hero.com/api/peddy/pets')
             .then(res => res.json())
             .then(data => {
+                petsData = data.pets;
 
                 setTimeout(function(){
-                    displayPets(data.pets);
+                    displayPets(petsData);
                 }, 2000)
             });
     } 
@@ -81,14 +84,7 @@ const likedPet = (picture) => {
     likedPetContainer.append(div);
 }
 
-
-
-
-
-
-
-
-
+// display details info in modal function
 const displayDetails = (details) => {
     const detailsContainer = document.getElementById('modal-container');
 
@@ -146,6 +142,7 @@ const displayCategories = (categories) => {
     })
 };
 
+
 // display all pets function
 const displayPets = (pets) => {
     const petContainer = document.getElementById('pets-container');
@@ -197,6 +194,22 @@ const displayPets = (pets) => {
         petContainer.append(card);
     })
 }
+
+
+// sort by price
+document.getElementById('sort-by-price').addEventListener('click', () => {
+    const petContainer = document.getElementById('pets-container');
+        petContainer.innerHTML = "";
+        document.getElementById('spinner').style.display = "block";
+
+    const sortedPets = [...petsData].sort((a, b) => (b.price || 0) - (a.price || 0));
+
+    setTimeout(function() {
+        displayPets(sortedPets)
+    }, 2000)
+    ;
+});
+
 
 // adopted pet function
 const adoptedPet = (id) => {
